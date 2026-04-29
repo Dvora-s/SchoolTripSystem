@@ -57,9 +57,9 @@ const simulate = async () => {
         };
 
         if (outliers[ID]) {
-            // מצב חריגה — זזה לאזור רחוק (~4-5 ק"מ צפון-מזרח) עם רעש קטן
-            positions[ID].lat = 32.0742 + 0.04 + (Math.random() - 0.5) * 0.002;
-            positions[ID].lng = 34.7800 + 0.04 + (Math.random() - 0.5) * 0.002;
+            // מצב חריגה — זזה לאזור רחוק (~3.2 ק"מ צפון-מזרח) עם רעש קטן
+            positions[ID].lat = 32.0742 + 0.029 + (Math.random() - 0.5) * 0.001;
+            positions[ID].lng = 34.7800 + 0.029 + (Math.random() - 0.5) * 0.001;
         } else if (returning[ID]) {
             // מצב חזרה — זזה 30% מהמרחק לכיוון המורה בכל ריצה (תנועה מואצת)
             const teacher = getTeacherPosition();

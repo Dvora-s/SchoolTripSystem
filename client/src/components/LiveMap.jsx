@@ -88,7 +88,7 @@ export default function LiveMap({ className, teacherId }) {
             // בדיקת מרחק לכל תלמידה
             data.filter(s => s.Role === 'student').forEach(student => {
                 const dist = haversine(teacher.Latitude, teacher.Longitude, student.Latitude, student.Longitude);
-                if (dist > 3) {
+                if (dist >= 3) {
                     // חריגה חדשה — הצג התראה רק אם לא הוצגה כבר
                     if (!alertedRef.current[student.ID]) {
                         alertedRef.current[student.ID] = true;
