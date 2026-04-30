@@ -23,28 +23,10 @@ SchoolTripSystem/
 
 ---
 
-## ✨ Features
-
-- **Teacher Registration** — Register with full name, ID number, and class
-- **Login** — Sign in using your ID number
-- **Student Management** — Add students to your class directly from the dashboard
-- **Live Map** — Student locations update every 10 seconds
-- **Name Labels** — Each student's name is displayed above their marker on the map
-- **Distance Alerts** — Automatic alert if a student moves more than 3 km away from the teacher
-
----
 
 ## 🛠️ Prerequisites
 
-Make sure the following are installed before running the project:
 
-| Software | Minimum Version | Download |
-|----------|----------------|---------|
-| Node.js | 18+ | https://nodejs.org |
-| SQL Server Express | Any | https://www.microsoft.com/sql-server |
-| ODBC Driver 17 for SQL Server | 17 | https://learn.microsoft.com/sql/connect/odbc/download-odbc-driver-for-sql-server |
-
----
 
 ## 🗄️ Database Setup
 
@@ -69,10 +51,7 @@ CREATE TABLE Students (
     ClassName NVARCHAR(10)  NOT NULL
 );
 ```
-
----
-
-## 🚀 Running the Project
+##  Running the Project
 
 ### Step 1 — Install Dependencies
 
@@ -120,6 +99,13 @@ npm run dev
 App runs at: `http://localhost:5173`
 
 ---
+<img width="1423" height="703" alt="image" src="https://github.com/user-attachments/assets/b06c78de-4a5f-4fc5-882b-9cbd18b39b74" />
+You can register with id 111111111
+<img width="1407" height="845" alt="image" src="https://github.com/user-attachments/assets/1e9fafe9-d9eb-43c0-8449-2ee7b7a72e99" />
+For the simulation, each student receives a random location and every 20 seconds the location is updated and moves a little, and once every 2 minutes or so a student moves more than 3 kilometers away from the teacher, and then the teacher can call her back to come closer. The teacher has a history of how far away each student has moved.
+<img width="769" height="502" alt="image" src="https://github.com/user-attachments/assets/a7f0be41-2e4e-44ff-8c9e-ed1043de2943" />
+<img width="957" height="731" alt="image" src="https://github.com/user-attachments/assets/65f718f3-fff3-4b73-a357-319940d243ae" />
+<img width="615" height="205" alt="image" src="https://github.com/user-attachments/assets/eec344fe-2613-4e8d-8f41-8b5c0c1fd2c1" />
 
 ## 📖 How to Use
 
@@ -128,24 +114,7 @@ App runs at: `http://localhost:5173`
 3. **Add Students** — From the dashboard, enter a student's name and ID (class is set automatically)
 4. **Live Map** — Scroll down on the dashboard to see student locations in real time
 5. **Alerts** — If a student moves more than 3 km away, a red alert appears above the map
-
----
-
-## 🔌 API Endpoints
-
-| Method | Path | Description |
-|--------|------|-------------|
-| `POST` | `/api/teachers` | Register a new teacher |
-| `POST` | `/api/teachers/login` | Teacher login |
-| `GET`  | `/api/teachers/:id/students` | Get students by teacher's class |
-| `POST` | `/api/students` | Add a new student |
-| `GET`  | `/api/students` | Get all students |
-| `GET`  | `/api/locations/:className` | Get live locations by class |
-| `POST` | `/api/locations` | Update locations from a device |
-
----
-
-## 🧰 Tech Stack
+##  Tech Stack
 
 **Frontend:**
 - React 19
