@@ -20,7 +20,6 @@ const seed = async () => {
             await sql.query`INSERT INTO Students (ID, FullName, ClassName) VALUES (${id}, ${fullName}, ${className})`;
             console.log(`נוספה: ${fullName}`);
         } catch (err) {
-            // אם הרשומה כבר קיימת - ממשיכים הלאה
             console.log(`${fullName} כבר קיימת, מדלגים`);
         }
     }

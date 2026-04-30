@@ -1,10 +1,13 @@
-#  School Trip Tracking System
+# 🛡️ School Trip Tracking System
 
 A real-time web application for managing and tracking students during school trips.  
 The teacher can view each student's location on a live map, receive alerts if a student wanders too far, and manage the class roster.
 
-# Project Structure
+---
 
+## 🗂️ Project Structure
+
+```
 SchoolTripSystem/
 ├── client/          # Frontend - React + Vite
 │   └── src/
@@ -16,8 +19,11 @@ SchoolTripSystem/
     ├── routes/          # API route definitions
     ├── simulation.js    # Location simulation for development
     └── seed.js          # Seed script for demo data
+```
 
-# Features
+---
+
+## ✨ Features
 
 - **Teacher Registration** — Register with full name, ID number, and class
 - **Login** — Sign in using your ID number
@@ -26,8 +32,21 @@ SchoolTripSystem/
 - **Name Labels** — Each student's name is displayed above their marker on the map
 - **Distance Alerts** — Automatic alert if a student moves more than 3 km away from the teacher
 
+---
 
-## Database Setup
+## 🛠️ Prerequisites
+
+Make sure the following are installed before running the project:
+
+| Software | Minimum Version | Download |
+|----------|----------------|---------|
+| Node.js | 18+ | https://nodejs.org |
+| SQL Server Express | Any | https://www.microsoft.com/sql-server |
+| ODBC Driver 17 for SQL Server | 17 | https://learn.microsoft.com/sql/connect/odbc/download-odbc-driver-for-sql-server |
+
+---
+
+## 🗄️ Database Setup
 
 Open **SQL Server Management Studio** (or any similar tool) and run the following script to create the database and tables:
 
@@ -49,10 +68,13 @@ CREATE TABLE Students (
     FullName  NVARCHAR(100) NOT NULL,
     ClassName NVARCHAR(10)  NOT NULL
 );
+```
 
-# Running the Project:
+---
 
-#Step 1 — Install Dependencies
+## 🚀 Running the Project
+
+### Step 1 — Install Dependencies
 
 Open two separate terminal windows:
 
@@ -107,8 +129,23 @@ App runs at: `http://localhost:5173`
 4. **Live Map** — Scroll down on the dashboard to see student locations in real time
 5. **Alerts** — If a student moves more than 3 km away, a red alert appears above the map
 
+---
 
-# Tech Stack
+## 🔌 API Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `POST` | `/api/teachers` | Register a new teacher |
+| `POST` | `/api/teachers/login` | Teacher login |
+| `GET`  | `/api/teachers/:id/students` | Get students by teacher's class |
+| `POST` | `/api/students` | Add a new student |
+| `GET`  | `/api/students` | Get all students |
+| `GET`  | `/api/locations/:className` | Get live locations by class |
+| `POST` | `/api/locations` | Update locations from a device |
+
+---
+
+## 🧰 Tech Stack
 
 **Frontend:**
 - React 19
@@ -120,7 +157,9 @@ App runs at: `http://localhost:5173`
 - mssql / msnodesqlv8
 - SQL Server Express
 
-# Important Notes
+---
+
+## ⚠️ Important Notes
 
 - The simulation (`simulation.js`) fakes movement for 3 students for development purposes only — remove it in production
 - The simulation student IDs are: `333333333`, `444444444`, `555555555` — they must exist in the database (inserted by `seed.js`)

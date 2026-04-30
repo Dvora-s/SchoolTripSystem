@@ -1,36 +1,9 @@
-/*
- * LiveMap.jsx - מפה חיה עם מיקומי תלמידות ומורה
- * =================================================
- * תפקיד הקומפוננט:
- *   מציג מפה אינטראקטיבית (Leaflet) עם מיקומים בזמן אמת.
- *   מתרענן כל 20 שניות אוטומטית.
- *   מזהה תלמידות שהתרחקו מעל 3 ק"מ מהמורה ומציג התראה.
- *
- * Props שמקבל:
- *   className  - שם הכיתה (לדוגמה: ו1)
- *   teacherId  - תעודת זהות המורה (להצגתה על המפה ולחישוב מרחק)
- *
- * סמנים על המפה:
- *   עיגול כחול  - תלמידה רגילה
- *   עיגול אדום  - המורה (עם אייקון 👩🏫)
- *
- * התראות:
- *   קופצת התראה אדומה + צליל כשתלמידה מתרחקת מעל 3 ק"מ
- *   כפתור "קראי לה להתקרב" שולח POST לשרת ומפעיל חזרה מונפשת
- *
- * היסטוריה:
- *   טבלה מתחת למפה עם מספר פעמים שכל תלמידה התרחקה
- *   תלמידות שהתרחקו 3+ פעמים מסומנות באדום
- */
 
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// makeIcon - יוצר DivIcon מותאם עם תווית שם מעל עיגול צבעוני
-// color  - צבע העיגול (CSS color string)
-// label  - הטקסט שיוצג מעל העיגול
 const makeIcon = (color, label) => new L.DivIcon({
     className: '',
     html: `<div style="display:flex;flex-direction:column;align-items:center;gap:2px">
@@ -42,8 +15,6 @@ const makeIcon = (color, label) => new L.DivIcon({
     popupAnchor: [0, -20],
 });
 
-// playAlert - מנגן צליל התראה קצר דרך Web Audio API (ללא קבצי שמע חיצוניים)
-// שני צלילים יורדים: 880Hz → 660Hz, משך 0.4 שניות
 const playAlert = () => {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
     const osc = ctx.createOscillator();
@@ -84,12 +55,9 @@ export default function LiveMap({ className, teacherId }) {
 
             const teacher = data.find(s => s.Role === 'teacher');
             if (!teacher) return;
-
-            // בדיקת מרחק לכל תלמידה
             data.filter(s => s.Role === 'student').forEach(student => {
                 const dist = haversine(teacher.Latitude, teacher.Longitude, student.Latitude, student.Longitude);
                 if (dist >= 3) {
-                    // חריגה חדשה — הצג התראה רק אם לא הוצגה כבר
                     if (!alertedRef.current[student.ID]) {
                         alertedRef.current[student.ID] = true;
                         const alertId = Date.now() + student.ID;

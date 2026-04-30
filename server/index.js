@@ -9,13 +9,6 @@
  *     3. חיבור כל ה-routers לנתיבים שלהם
  *     4. הפעלת הדמיית המיקומים
  *     5. הפעלת השרת על פורט 3001
- *
- * ארכיטקטורת השרת:
- *   index.js (כניסה)
- *     ├── routes/teachers.js    → controllers/teachersController.js → config/db.js
- *     ├── routes/students.js    → controllers/studentsController.js → config/db.js
- *     ├── routes/locations.js   → controllers/locationsController.js → config/db.js
- *     └── simulation.js         → controllers/locationsController.js (זיכרון)
  */
 
 const express = require('express');
@@ -51,7 +44,6 @@ app.use('/api/students', studentsRouter);
 app.use('/api/locations', locationsRouter);
 
 // הפעלת השרת - מאזין לבקשות נכנסות על פורט 3001
-// אם הפורט תפוס, ניתן לשנות כאן בלבד
 const PORT = 3001;
 const server = app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
